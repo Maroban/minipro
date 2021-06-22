@@ -19,10 +19,12 @@ public class PhoneApp {
 
 		List<Person> pList = new ArrayList<Person>();
 
+		// PhoneDB.txt 읽기
 		InputStream is = new FileInputStream("E:\\javaStudy\\workspace\\minipro\\PhoneDB.txt");
 		InputStreamReader isr = new InputStreamReader(is, "UTF-8");
 		BufferedReader br = new BufferedReader(isr);
 
+		// 스캐너
 		Scanner sc = new Scanner(System.in);
 
 		boolean flag = true;
@@ -32,6 +34,7 @@ public class PhoneApp {
 		System.out.println("*               전화번호 관리 프로그램               *");
 		System.out.println("******************************************************");
 
+		// PhoneDB.txt 읽은 후 리스트에 add
 		while (true) {
 			String data = br.readLine();
 			if (data == null) {
@@ -48,7 +51,7 @@ public class PhoneApp {
 			pList.add(person);
 		}
 
-		while (flag) {
+		while (flag) { // 메뉴 출력
 			System.out.println("1. 리스트  2. 등록  3. 삭제  4. 검색  5. 종료  ");
 			System.out.println("------------------------------------------------------");
 			System.out.print("> 메뉴 번호: ");
@@ -56,8 +59,9 @@ public class PhoneApp {
 			int num = 1;
 
 			switch (menu) {
-			case 1:
 
+			// 리스트 출력
+			case 1:
 				System.out.println("<1. 리스트>");
 
 				for (Person person : pList) {
@@ -68,6 +72,7 @@ public class PhoneApp {
 				System.out.println();
 				break;
 
+			// 연락처 등록
 			case 2:
 				System.out.println("<2. 등록>");
 				sc.nextLine();
@@ -87,6 +92,7 @@ public class PhoneApp {
 				System.out.println();
 				break;
 
+			// 연락처 삭제
 			case 3:
 				System.out.println("<3. 삭제>");
 				System.out.print("> 번호: ");
@@ -96,6 +102,7 @@ public class PhoneApp {
 				System.out.println();
 				break;
 
+			// 연락처 검색
 			case 4:
 				sc.nextLine();
 				System.out.println("<4. 검색>");
@@ -109,12 +116,14 @@ public class PhoneApp {
 				}
 				break;
 
+			// 종료
 			case 5:
 				System.out.println();
 				System.out.println("*******************************************************");
 				System.out.println("*                     감사합니다.                     *");
 				System.out.println("*******************************************************");
 
+				// 리스트에 저장된 값을 PhoneDB.txt에 쓰기
 				OutputStream os = new FileOutputStream("E:\\javaStudy\\workspace\\minipro\\PhoneDB.txt");
 				OutputStreamWriter osw = new OutputStreamWriter(os);
 				BufferedWriter bw = new BufferedWriter(osw);
@@ -129,6 +138,7 @@ public class PhoneApp {
 				bw.close();
 				break;
 
+			// 없는 메뉴 출력
 			default:
 				System.out.println("[다시 입력해 주세요]");
 				break;
